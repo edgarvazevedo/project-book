@@ -5,6 +5,8 @@ import axios from "axios";
 import Navbar from "../../components/Navbar";
 import "./BookDetails.css";
 
+import favoriteIcon from "../../assets/noun-add-to-favorites-3821425.png"
+
 function BookDetails() {
   const [bookData, setBookData] = useState({
     _id: "",
@@ -12,6 +14,7 @@ function BookDetails() {
     title: "",
     price: "",
     description: "",
+    author: "",
   });
   const params = useParams();
 
@@ -35,24 +38,27 @@ function BookDetails() {
       <Navbar />
       <>
         <div className="container">
-          <section>
-            <h1>{bookData.title}</h1>
-            <p>by {bookData.author}</p>
-            <div>
-              <h2 className="about">ABOUT THE BOOK</h2>
-              <p className="description-details">{bookData.description}</p>
-            </div>
-            <img
-              className="image-details"
-              src={bookData.image}
-              alt="book"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src =
-                  "https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/996/notfound.png";
-              }}
-            />
-           </section>
+          <div>
+            <section>
+              <h1>{bookData.title}</h1>
+              <p>by {bookData.author}</p>
+              <div>
+                <h2 className="about">ABOUT THE BOOK</h2>
+                <p className="description-details">{bookData.description}</p>
+              </div>
+              <img src={favoriteIcon} alt="favorite" />
+              <img
+                className="image-details"
+                src={bookData.image}
+                alt="book"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src =
+                    "https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/996/notfound.png";
+                }}
+              />
+            </section>
+          </div>
         </div>
       </>
     </>

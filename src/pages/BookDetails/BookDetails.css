@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 .image-details {
     margin-left: 78px;
     margin-right: auto;
