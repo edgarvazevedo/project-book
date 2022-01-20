@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/authContext";
 
 import iconUser from "../assets/noun-user-3184169.png"
 
-function Navbar() {
+function NavbarBooks() {
   const { loggedInUser, logout } = useContext(AuthContext);
 
   return (
@@ -18,6 +18,12 @@ function Navbar() {
       <img className="d-inline-block align-text-top" src="https://media.istockphoto.com/photos/blue-book-stack-picture-id1290063471?s=612x612" alt="" style={{width:"2rem"}} />
       Books
     </Link>
+
+
+    <form className="d-flex">
+      <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+      <button className="btn btn-outline-success" type="submit">Search</button>
+    </form>
     
 
 
@@ -46,4 +52,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarBooks;

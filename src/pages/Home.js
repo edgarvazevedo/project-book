@@ -1,10 +1,13 @@
 import React from "react";
 import imagebook from "../assets/ugur-akdemir-XT-o5O458as-unsplash.jpg";
 import "./Home.css";
+import Navbar from "../components/Navbar"
 
 function Home() {
   return (
+    
     <div>
+      <Navbar />
       <img className="img-home"  src={imagebook} alt="..." />
       <h1>Most Viewed Books</h1>
       <div className="row row-cols-1 row-cols-md-3 g-4 ms-1 me-1">

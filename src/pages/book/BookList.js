@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./BookLis.css";
+import NavbarBooks from "../../components/NavbarBooks";
 
 function BookList() {
   const [book, setBook] = useState([]);
@@ -23,6 +24,7 @@ function BookList() {
 
   return (
     <>
+      <NavbarBooks />
       <>
         <h1 className="mt-5">Bookstore</h1>
         <div className="container pt-5">
@@ -44,7 +46,8 @@ function BookList() {
                 <div className="content-text">
                   <Link
                     className="card-title"
-                    to={`/giftdetails/${currentBook._id}`}
+                    to={`/bookdetails/${currentBook._id}`}
+                    style={{ textDecoration: "none" }}
                   >
                     <h2 className="card-title">{currentBook.title}</h2>
                   </Link>
