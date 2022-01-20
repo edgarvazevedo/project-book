@@ -30,10 +30,10 @@ function BookList() {
         <div className="container pt-5">
           {book.map((currentBook) => {
             return (
-              <article key={currentBook._id} className="content">
+              <article key={currentBook._id} className="content-list">
                 <Link to={`/bookdetails/${currentBook._id}`}>
                   <img
-                    className="content-img"
+                    className="content-img-list"
                     src={currentBook.image}
                     alt="book"
                     onError={(e) => {
@@ -43,7 +43,7 @@ function BookList() {
                     }}
                   />
                 </Link>
-                <div className="content-text">
+                <div className="content-text-list">
                   <p1 className="card-title">{currentBook.title}</p1>
                   <p>
                     {currentBook.price.toLocaleString("pt-PT", {

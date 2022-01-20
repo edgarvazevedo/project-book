@@ -5,27 +5,27 @@
     flex-wrap: wrap;
 }
 
-.content-img {
-    width: 248px;
-    height: 200px;
-    border-radius: 15px 15px 0 0;
+.content-img-list {
+    width: 300px;
+    height: 330px;
+    border-radius: 5px 5px 0 0;
     object-fit: cover;
 }
 
-.content {
+.content-list {
     display: flex;
     flex-direction: column;
-    max-width: 250px;
-    height: 390px;
+    max-width: 300px;
+    height: 400px;
     text-align: center;
     border: 1px solid;
     border-color: transparent #DDDDDD #DDDDDD #DDDDDD;
-    border-radius: 8px;
+    border-radius: 5px;
     margin: 20px;
     
 }
 
-.content-text {
+.content-text-list {
     padding: 10px;
     display: flex;
     flex-direction: column;

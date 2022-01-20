@@ -5,5 +5,37 @@ h1 {
 .img-home {
   width: 1536px;
   height: 400px;
-  
+  Overflow-x: hidden;
+  }
+
+  .content-img {
+    width: 100px;
+    height: 150px;
+    border-radius: 5px 5px 5px 5px;
+    object-fit: cover;
+    
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 120px;
+    height: 200pxpx;
+    text-align: center;
+    border: 1px solid;
+    border-color: transparent #DDDDDD #DDDDDD #DDDDDD;
+    border-radius: 5px;
+    margin: 20px;
+        
+}
+
+.content-text {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 190px;
+    
 }
