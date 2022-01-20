@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 h1 {
     text-align: center;
 }
@@ -5,7 +9,6 @@ h1 {
 .img-home {
   width: 1536px;
   height: 400px;
-  Overflow-x: hidden;
   }
 
   .content-img {
