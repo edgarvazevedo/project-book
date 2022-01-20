@@ -9,7 +9,7 @@ function Home() {
     <div>
       <Navbar />
       <img className="img-home"  src={imagebook} alt="..." />
-      <h1>Most Viewed Books</h1>
+      <h1 className="pt-3 pb-3">Most Viewed Books</h1>
       <div className="row row-cols-1 row-cols-md-3 g-4 ms-1 me-1">
         <div className="col">
           <div className="card">

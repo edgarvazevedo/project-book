@@ -44,15 +44,8 @@ function BookList() {
                   />
                 </Link>
                 <div className="content-text">
-                  <Link
-                    className="card-title"
-                    to={`/bookdetails/${currentBook._id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <h2 className="card-title">{currentBook.title}</h2>
-                  </Link>
-                  <p className="text-description">
-                    Price:
+                  <p1 className="card-title">{currentBook.title}</p1>
+                  <p>
                     {currentBook.price.toLocaleString("pt-PT", {
                       currency: "EUR",
                       style: "currency",
