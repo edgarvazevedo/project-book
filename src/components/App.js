@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/book" element={<BookList />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/bookdetails" element={<BookDetails />} />
+        <Route path="/bookdetails/:id" element={<BookDetails />} />
       </Routes>
     </AuthContextComponent>
   );

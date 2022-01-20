@@ -1,0 +1,20 @@
+.image-details {
+    margin-left: 78px;
+    margin-right: auto;
+    width: 300px;
+    height: 400px;
+   }
+
+   .description-details {
+    margin: 642px;
+    text-align: inherit;
+    position: absolute;
+    top: -404px;
+    right: -489px;
+   
+   }
+
+   .about {
+    margin-left: 418px;
+    margin-top: 55px;
+   }
