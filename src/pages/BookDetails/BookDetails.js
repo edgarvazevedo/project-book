@@ -5,7 +5,7 @@ import axios from "axios";
 import Navbar from "../../components/Navbar";
 import "./BookDetails.css";
 
-import favoriteIcon from "../../assets/noun-add-to-favorites-3821425.png"
+
 
 function BookDetails() {
   const [bookData, setBookData] = useState({
@@ -46,7 +46,6 @@ function BookDetails() {
                 <h2 className="about">ABOUT THE BOOK</h2>
                 <p className="description-details">{bookData.description}</p>
               </div>
-              <img src={favoriteIcon} alt="favorite" />
               <img
                 className="image-details"
                 src={bookData.image}
