@@ -1,26 +1,28 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import axios from "axios";
+
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./BookLis.css";
 import NavbarBooks from "../../components/NavbarBooks";
+
+import api from "../../apis/api"
 
 function BookList() {
   const [book, setBook] = useState([]);
 
+  const { id } = useParams();
+
   useEffect(() => {
     async function fetchBook() {
       try {
-        const response = await axios.get(
-          "https://ironrest.herokuapp.com/books"
-        );
+        const response = await api.get(`/book-create/${id}`);
         setBook([...response.data]);
       } catch (error) {
         console.log(error);
       }
     }
     fetchBook();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -34,7 +36,7 @@ function BookList() {
                 <Link to={`/bookdetails/${currentBook._id}`}>
                   <img
                     className="content-img-list"
-                    src={currentBook.image}
+                    src={currentBook.title}
                     alt="book"
                     onError={(e) => {
                       e.target.onerror = null;
