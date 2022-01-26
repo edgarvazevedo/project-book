@@ -24,7 +24,10 @@ function App() {
         <Route path="/" element={<BookList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/bookdetails/:id" element={<BookDetails />} />
-        <Route path="/book/create" element={<BookCreate />} />
+        <Route
+          path="/book/create"
+          element={<ProtectedRoute component={BookCreate} />}
+        />
         <Route
           path="/delete-book/:id"
           element={<ProtectedRoute component={BookDelete} />}

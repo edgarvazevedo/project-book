@@ -59,11 +59,9 @@ function Login(props) {
     <form onSubmit={handleSubmit}>
       <Navbar />
       
-
-      <h1>Login</h1>
-      <img className="image-login" src={""} alt="logo" />
-      <p className="texto-login">Seja bem-vind@, faça seu login para se deliciar com nosso menu!</p>
-
+<div className="container">
+<h1>Login</h1>
+      
       <div className="ms-5 pb-3">
         <label htmlFor="signupFormEmail"></label>
         <input
@@ -90,14 +88,17 @@ function Login(props) {
         />
       </div>
 
-      <div className="botao pt-5">
+      <div className="pt-5">
         <button type="submit" className="btn btn-primary">
           Login!
         </button>
         <div>
-          <Link to="/signup">Não tem conta? Clique aqui!</Link>
+          <Link to="/signup">Don't have an account? Click here!</Link>
         </div>
       </div>
+
+</div>
+      
     </form>
   );
 }
