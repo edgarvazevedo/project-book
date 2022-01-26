@@ -27,6 +27,9 @@ function BookCard(props) {
           <h4>
             <p>{props.releaseYear}</p>
           </h4>
+          <h4>
+            <p>{props.genre}</p>
+          </h4>
         </div>
         <div className="container-fluid d-flex justify-content-between">
           <div className="btn btn-primary">

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
 import FormField from "../../components/forms/FormField";
 import Navbar from "../../components/Navbar";
 import api from "../../apis/api";
@@ -62,7 +60,7 @@ function BookCreate() {
 
       console.log(response);
       setLoading(false);
-      navigate("/")
+      navigate("/");
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -113,6 +111,16 @@ function BookCreate() {
             type="number"
             onChange={handleChange}
             value={bookData.releaseYear}
+            required
+            readOnly={loading}
+          />
+
+          <FormField
+            label="Gênero"
+            id="genre"
+            name="genre"
+            onChange={handleChange}
+            value={bookData.genre}
             required
             readOnly={loading}
           />

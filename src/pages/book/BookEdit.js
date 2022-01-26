@@ -26,7 +26,7 @@ function BookEdit(props) {
     async function user() {
       try {
         const response = await api.get(`/detail-book/${id}`);
-        const coverImage = await handleFileUpload(userData.picture);
+        const coverImage = await handleFileUpload(userData.coverImage);
 
         setUserData({ ...userData, coverImage, ...response.data });
       } catch (e) {
@@ -34,6 +34,7 @@ function BookEdit(props) {
       }
     }
     user();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   function handleChange(e) {
@@ -51,7 +52,7 @@ function BookEdit(props) {
       const uploadData = new FormData();
       uploadData.append("picture", file);
 
-      const response = await api.post("/upload", uploadData);
+      const response = await api.post("/update-book", uploadData);
       console.log(response);
 
       return response.data.url;
@@ -68,7 +69,7 @@ function BookEdit(props) {
 
       const coverImage = await handleFileUpload(userData.picture);
       const response = await api.patch(
-        `/update-book/${id}`,
+        `/upload/${id}`,
         userData,
         coverImage
       );

@@ -85,7 +85,7 @@ function BookDetail() {
           show={showModal}
           handleClose={() => setShowModal(false)}
           handleConfirmation={() => {
-            navigate(`/book/delete/${id}`);
+            navigate(`/delete-book/${id}`);
             setShowModal(false);
           }}
         >
