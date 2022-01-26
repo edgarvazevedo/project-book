@@ -13,9 +13,8 @@ function Navbar() {
         <Link className="navbar-brand" to="/">
           Home
         </Link>
-        <Link className="navbar-brand" to="/book">
-          Books
-        </Link>
+
+        <Link className="navbar-brand" to="/book/create">Create a new book</Link>
 
         <div>
           {loggedInUser.user._id ? (

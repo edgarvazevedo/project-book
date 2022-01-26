@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
-
+import Navbar from "../../components/Navbar"
 
 import { AuthContext } from "../../contexts/authContext";
 
@@ -57,6 +57,7 @@ function Login(props) {
 
   return (
     <form onSubmit={handleSubmit}>
+      <Navbar />
       
 
       <h1>Login</h1>

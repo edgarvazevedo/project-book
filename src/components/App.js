@@ -1,12 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Home from "../pages/Home";
 import BookList from "../pages/book/BookList";
 import BookDetails from "../pages/book/BookDetail";
 import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 import BookCreate from "../pages/book/BookCreate";
+import ProtectedRoute from "../pages/auth/ProtectedRoute";
+import BookDelete from "../pages/book/BookDelete";
+import BookEdit from "../pages/book/BookEdit";
 
 import { AuthContextComponent } from "../contexts/authContext";
 
@@ -14,12 +16,19 @@ function App() {
   return (
     <AuthContextComponent>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/update-book/:id"
+          element={<ProtectedRoute component={BookEdit} />}
+        />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/book" element={<BookList />} />
+        <Route path="/" element={<BookList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/bookdetails/:id" element={<BookDetails />} />
         <Route path="/book/create" element={<BookCreate />} />
+        <Route
+          path="/delete-book/:id"
+          element={<ProtectedRoute component={BookDelete} />}
+        />
       </Routes>
     </AuthContextComponent>
   );
