@@ -8,7 +8,7 @@ function BookDelete() {
   const navigate = useNavigate ();
 
   useEffect(() => {
-    async function deleteProduct() {
+    async function deleteBook() {
       try {
         const response = await api.delete(`/delete-book/${id}`);
 
@@ -18,7 +18,7 @@ function BookDelete() {
         console.error(err);
       }
     }
-    deleteProduct();
+    deleteBook();
   }, [id, navigate ]);
 
   return <div>Deletando...</div>;

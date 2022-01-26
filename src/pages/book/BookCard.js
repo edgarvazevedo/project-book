@@ -1,40 +1,67 @@
-import { Link } from "react-router-dom";
-import "./BookDetails.css";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import ConfirmationModal from "../../components/ConfirmationModal";
+
 
 function BookCard(props) {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
   return (
-    <Link
-      to={`/bookdetails/${props._id}`}
-      className="list-group-item list-group-item-action"
-      aria-current="true"
-    >
-        <div className="img-container d-flex justify-content-between">
-        <div className="container">
-        <p>
-          <strong>{props.title}</strong>
-          
-        </p>
-        <img  className="image-details" src={props.coverImage} alt="cover"/>
-        <p>
-          <strong>Authot: </strong>
-          {props.author}
-        </p>
-        <p>
-          <strong>Synopsis: </strong>
-          {props.synopsis}
-        </p>
-        <p>
-          <strong>Ano: </strong>
-          {props.releaseYear}
-        </p>
-        <p>
-          <strong>Genre: </strong>
-          {props.genre}
-        </p>
-      </div>
+    <div className="list-group-item ">
+        
+      <div class="img-fluid card" style={{ width: "18rem" }}>
+        <img
+          src={props.coverImage}
+          class="card-img-top img-card"
+          alt={props.title}
+        />
+        <div class="card-body">
+          <h3>
+            <strong>{props.title}</strong>
+          </h3>
+          <h5>
+            <strong>{props.author}</strong>
+          </h5>
+
+          <h4>
+            <p>{props.releaseYear}</p>
+          </h4>
         </div>
-      
-    </Link>
+        <div className="container-fluid d-flex justify-content-between">
+          <div className="btn btn-primary">
+            <Link className="link-detail" to={`/bookdetails/${props._id}`}>
+              Detalhe
+            </Link>
+          </div>
+
+          <button className="btn btn-warning">
+            <Link to={`/edit-book/${props._id}`}>
+              
+            </Link>
+          </button>
+          <button
+            className="btn btn-danger btn-link"
+            onClick={() => setShowModal(true)}
+          >
+            
+          </button>
+          <ConfirmationModal
+            title="Tem certeza que quer deletar esse livro?"
+            variant="danger"
+            confirmationText="Deletar"
+            show={showModal}
+            handleClose={() => setShowModal(false)}
+            handleConfirmation={() => {
+              navigate(`/delete-book/${props._id}`);
+              setShowModal(false);
+            }}
+          >
+            Esta ação é irreversível!
+          </ConfirmationModal>
+        </div>
+      </div>
+    </div>
   );
 }
 

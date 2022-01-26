@@ -1,4 +1,4 @@
-import Modal from "react";
+import Modal from "react-bootstrap/Modal";
 
 function ConfirmationModal(props) {
   return (

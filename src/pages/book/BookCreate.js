@@ -8,7 +8,7 @@ import Navbar from "../../components/Navbar";
 import api from "../../apis/api";
 
 function BookCreate() {
-  const [booktData, setBookData] = useState({
+  const [bookData, setBookData] = useState({
     title: "",
     author: "",
     synopsis: "",
@@ -23,12 +23,12 @@ function BookCreate() {
   function handleChange(e) {
     if (e.target.files) {
       return setBookData({
-        ...booktData,
+        ...bookData,
         [e.target.name]: e.target.files[0],
       });
     }
 
-    setBookData({ ...booktData, [e.target.name]: e.target.value });
+    setBookData({ ...bookData, [e.target.name]: e.target.value });
   }
 
   async function handleFileUpload(file) {
@@ -53,10 +53,10 @@ function BookCreate() {
     try {
       setLoading(true);
 
-      const coverImage = await handleFileUpload(booktData.coverImage);
+      const coverImage = await handleFileUpload(bookData.coverImage);
 
       const response = await api.post("/book-create", {
-        ...booktData,
+        ...bookData,
         coverImage,
       });
 
@@ -81,7 +81,7 @@ function BookCreate() {
             id="productFormName"
             name="title"
             onChange={handleChange}
-            value={booktData.title}
+            value={bookData.title}
             required
             readOnly={loading}
           />
@@ -91,7 +91,7 @@ function BookCreate() {
             id="productFormManufacturer"
             name="author"
             onChange={handleChange}
-            value={booktData.author}
+            value={bookData.author}
             required
             readOnly={loading}
           />
@@ -101,7 +101,7 @@ function BookCreate() {
             id=""
             name="synopsis"
             onChange={handleChange}
-            value={booktData.synopsis}
+            value={bookData.synopsis}
             required
             readOnly={loading}
           />
@@ -112,7 +112,7 @@ function BookCreate() {
             name="year"
             type="number"
             onChange={handleChange}
-            value={booktData.releaseYear}
+            value={bookData.releaseYear}
             required
             readOnly={loading}
           />

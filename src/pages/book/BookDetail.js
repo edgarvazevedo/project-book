@@ -1,28 +1,30 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 import api from "../../apis/api";
-import "./BookDetails.css";
-import Navbar from "../../components/Navbar";
+
+import ConfirmationModal from "../../components/ConfirmationModal";
 
 function BookDetail() {
-  const [BookDetails, setBookDetails] = useState({
-    title: "",
-    author: "",
-    synopsis: "",
+  const [bookDetail, setBookDetail] = useState({
+    title: '',
+    author: '',
+    synopsis: '',
     releaseYear: 0,
     genre: "",
-    coverImage: "",
+    coverImage: '',
   });
+  const [showModal, setShowModal] = useState(false);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchBook() {
       try {
-        const response = await api.get(`/book/${id}`);
+        const response = await api.get(`/detail-book/${id}`);
 
-        setBookDetails({ ...response.data });
+        setBookDetail({ ...response.data });
       } catch (err) {
         console.error(err);
       }
@@ -31,45 +33,64 @@ function BookDetail() {
   }, [id]);
 
   return (
-    <div>
-      <Navbar />
-
-      <div className="container">
-        <div className="img-container d-flex justify-content-between">
-          <div>
-            <button to="/update-book" className="btn btn-warning me-2">
-              Editar
-            </button>
-          </div>
+    <div className="container">
+      <div className=" d-flex justify-content-between">
+        <div className="img-fluid">
+          <img
+            className="img-detalhe"
+            alt={bookDetail.title}
+            src={bookDetail.coverImage}
+          />
         </div>
+        <div>
 
-        <p>
-          <strong>{BookDetails.title}</strong>
-        </p>
-        <img
-          className="image-details"
-          src={BookDetails.coverImage}
-          alt="cover"
-        />
-        <p>
-          <strong>Authot: </strong>
-          {BookDetails.author}
-        </p>
-        <p>
-          <strong>Synopsis: </strong>
-          {BookDetails.synopsis}
-        </p>
-        <p>
+          <Link
+            to={`/update-book/${id}`}
+            type="button"
+            className="btn btn-link  btn-warning mr-3"
+          >
+            Editar
+          </Link>
+          <button className="btn btn-danger" onClick={() => setShowModal(true)}>
+            Deletar
+          </button>
+        </div>
+      </div>
+
+      <div className="textos">
+        <h3>
+          <strong>Título: </strong>
+          {bookDetail.title}
+        </h3>
+        <h4>
+          <strong>Author: </strong>
+          {bookDetail.author}
+        </h4>
+        <h4>
           <strong>Ano: </strong>
-          {BookDetails.releaseYear}
-        </p>
-        <p>
-          <strong>Genre: </strong>
-          {BookDetails.genre}
-        </p>
-        <Link to={`/delete-book/${BookDetails._id}`}>
-          <i class="fas fa-trash-alt">deletar</i>
-        </Link>
+          {bookDetail.releaseYear}
+        </h4>
+        <h4>
+          <strong>Sinopse: </strong>
+          {bookDetail.synopsis}
+        </h4>
+        <h4>
+          <strong>Gênero: </strong>
+          {bookDetail.genre}
+        </h4>
+        <ConfirmationModal
+          title="Tem certeza que quer deletar?"
+          variant="danger"
+          confirmationText="Deletar"
+          show={showModal}
+          handleClose={() => setShowModal(false)}
+          handleConfirmation={() => {
+            navigate(`/book/delete/${id}`);
+            setShowModal(false);
+          }}
+        >
+          Esta ação é irreversível!
+        </ConfirmationModal>
       </div>
     </div>
   );

@@ -1,88 +1,195 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 import api from "../../apis/api";
+import FormField from "../../components/forms/FormField";
 
-import { useParams } from "react-router-dom";
+function BookEdit(props) {
+  const [userData, setUserData] = useState({
+    title: "",
+    author: "",
+    synopsis: "",
+    releaseYear: "",
+    genre: "",
+    picture: new File([], ""),
+    coverimage: "",
+  });
 
-function BookEdit() {
-    const [BookEdit, setBookEdit] = useState({
-      title: "",
-      author: "",
-      synopsis: "",
-      releaseYear: 0,
-      genre: "",
-      coverImage: "",
-    });
-  
-    const { id } = useParams();
+  //Loading
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-      async function fetchBook() {
-        try {
-          const response = await api.get(`/book/${id}`);
-  
-          setBookEdit({ ...response.data });
-        } catch (err) {
-          console.error(err);
-        }
+  useEffect(() => {
+    async function user() {
+      try {
+        const response = await api.get(`/detail-book/${id}`);
+        const coverImage = await handleFileUpload(userData.picture);
+
+        setUserData({ ...userData, coverImage, ...response.data });
+      } catch (e) {
+        console.log(e);
       }
-      fetchBook();
-    }, [id]);
+    }
+    user();
+  }, [id]);
 
-  
-  
+  function handleChange(e) {
+    if (e.target.files) {
+      return setUserData({
+        ...userData,
+        [e.target.name]: e.target.files[0],
+      });
+    }
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  }
+
+  async function handleFileUpload(file) {
+    try {
+      const uploadData = new FormData();
+      uploadData.append("picture", file);
+
+      const response = await api.post("/upload", uploadData);
+      console.log(response);
+
+      return response.data.url;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+
+      const coverImage = await handleFileUpload(userData.picture);
+      const response = await api.patch(
+        `/update-book/${id}`,
+        userData,
+        coverImage
+      );
+
+      console.log(response);
+      setLoading(false);
+
+      navigate("/");
+    } catch (err) {
+      setLoading(false);
+      console.error(err);
+      if (err.response) {
+        console.error(err.response);
+      }
+    }
+  }
 
   return (
-    <div>
-      <h1>eeeee</h1>
-
-      <div className="container">
-        <div className="img-container d-flex justify-content-between">
-          <img
-            className="img-fluid mh-100"
-            src={BookEdit.coverImage}
-            alt={BookEdit.title}
-          />
-
-          <div>
-            <button className="btn btn-warning me-2">Editar</button>
-          </div>
+    <div className="container cadastro">
+        
+      <form onSubmit={handleSubmit}>
+        <div className="titulo">
+          <h1>Novo Livro</h1>
         </div>
 
-        <p>
-          <strong>Title: </strong>
-          {BookEdit.title}
-        </p>
-        <p>
-          <strong>Authot: </strong>
-          {BookEdit.author}
-        </p>
-        <p>
-          <strong>Synopsis: </strong>
-          {BookEdit.synopsis}
-        </p>
-        <p>
-          <strong>Ano: </strong>
-          {BookEdit.releaseYear}
-        </p>
-        <p>
-          <strong>Genre: </strong>
-          {BookEdit.genre}
-        </p>
-        <p>
-          <strong>IMG: </strong>
-          {BookEdit.coverImage}
-        </p>
-        <Link to={`/delete-book/${BookEdit._id}`}>
-          <i class="fas fa-trash-alt">deletar</i>
-        </Link>
-      </div>
-    </div>
-      
-    
-  );
+        {/* Título */}
+        <div className=" mb-3 ">
+          <FormField
+            label="Título"
+            type="text"
+            id="title"
+            name="title"
+            onChange={handleChange}
+            value={userData.title}
+            required
+            readOnly={loading}
+          />
+        </div>
 
+        {/* Author */}
+        <div className=" mb-3">
+          <FormField
+            label="Autor"
+            type="text"
+            id="author"
+            name="author"
+            onChange={handleChange}
+            value={userData.author}
+            required
+            readOnly={loading}
+          />
+        </div>
+
+        {/* Sinopse */}
+        <div className=" mb-3">
+          <FormField
+            label="Sinopse"
+            type="text"
+            id="synopsis"
+            name="synopsis"
+            onChange={handleChange}
+            value={userData.synopsis}
+            required
+            readOnly={loading}
+          />
+        </div>
+
+        {/* Ano */}
+        <div className="mb-3">
+          <FormField
+            label="Ano"
+            id="releaseYear"
+            name="releaseYear"
+            onChange={handleChange}
+            value={userData.releaseYear}
+            required
+            readOnly={loading}
+          />
+        </div>
+
+        {/* Gênero */}
+        <div className=" mb-3">
+          <FormField
+            label="Gênero"
+            id="genre"
+            name="genre"
+            onChange={handleChange}
+            value={userData.genre}
+            required
+            readOnly={loading}
+          />
+        </div>
+
+        <div class=" mb-3">
+          <FormField
+            type="file"
+            label="Imagem"
+            id="productFormPicture"
+            name="picture"
+            onChange={handleChange}
+            readOnly={loading}
+          />
+        </div>
+
+        <div>
+          <button disabled={loading} type="submit" className="btn-primary mb-3">
+            {loading ? (
+              <>
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+              </>
+            ) : null} 
+              Update
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
+
 export default BookEdit;
