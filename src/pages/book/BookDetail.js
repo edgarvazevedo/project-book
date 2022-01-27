@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-
+import "./BookDetails.css";
 import api from "../../apis/api";
 
 import ConfirmationModal from "../../components/ConfirmationModal";
 
 function BookDetail() {
   const [bookDetail, setBookDetail] = useState({
-    title: '',
-    author: '',
-    synopsis: '',
-    releaseYear: 0,
+    title: "",
+    author: "",
+    synopsis: "",
+    releaseYear: "",
     genre: "",
-    coverImage: '',
+    coverImage: "",
   });
   const [showModal, setShowModal] = useState(false);
 
@@ -34,20 +34,40 @@ function BookDetail() {
 
   return (
     <div className="container">
-      <div className=" d-flex justify-content-between">
-        <div className="img-fluid">
+      <div className=" d-flex justify-content-between"></div>
+
+      <div>
+        <div className="description-details">
+          <h1>
+            <strong>{bookDetail.title}</strong>
+          </h1>
+          <p>
+            <strong>{bookDetail.author} </strong>
+          </p>
+          <p>
+            <strong>{bookDetail.releaseYear}</strong>
+          </p>
+          <p>
+            <strong>{bookDetail.synopsis}</strong>
+          </p>
+          <p>
+            <strong> {bookDetail.genre}</strong>
+          </p>
+        </div>
+
+        <div className="img-fluid mt-5">
           <img
-            className="img-detalhe"
+            className="image-details"
             alt={bookDetail.title}
             src={bookDetail.coverImage}
           />
         </div>
-        <div>
 
+        <div className="pt-5">
           <Link
             to={`/update-book/${id}`}
             type="button"
-            className="btn btn-link  btn-warning mr-3"
+            className="btn btn-warning mr-3 me-5"
           >
             Editar
           </Link>
@@ -55,29 +75,7 @@ function BookDetail() {
             Deletar
           </button>
         </div>
-      </div>
 
-      <div className="textos">
-        <h3>
-          <strong>Título: </strong>
-          {bookDetail.title}
-        </h3>
-        <h4>
-          <strong>Author: </strong>
-          {bookDetail.author}
-        </h4>
-        <h4>
-          <strong>Ano: </strong>
-          {bookDetail.releaseYear}
-        </h4>
-        <h4>
-          <strong>Sinopse: </strong>
-          {bookDetail.synopsis}
-        </h4>
-        <h4>
-          <strong>Gênero: </strong>
-          {bookDetail.genre}
-        </h4>
         <ConfirmationModal
           title="Tem certeza que quer deletar?"
           variant="danger"

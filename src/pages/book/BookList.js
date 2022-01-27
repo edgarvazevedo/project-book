@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import BookCard from "./BookCard";
-import Navbar from "../../components/Navbar"
+
 import api from "../../apis/api";
 
 function BookList() {
@@ -23,7 +23,6 @@ function BookList() {
   return (
     <div>
       <div className="list-group">
-        <Navbar />
         {bookList.map((currentBookObj) => (
           <BookCard key={currentBookObj._id} {...currentBookObj} />
         ))}

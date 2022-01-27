@@ -13,7 +13,6 @@ function FormField(props) {
           value={props.value}
           required={props.required}
           pattern={props.pattern}
-          min={props.min}
           readOnly={props.readOnly}
         />
       </div>

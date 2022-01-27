@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import FormField from "../../components/forms/FormField";
-import Navbar from "../../components/Navbar";
 import api from "../../apis/api";
 
 function BookCreate() {
@@ -69,8 +68,6 @@ function BookCreate() {
 
   return (
     <div>
-      <Navbar />
-
       <div className="container">
         <h1>New Book</h1>
         <form onSubmit={handleSubmit}>
@@ -105,7 +102,7 @@ function BookCreate() {
           />
 
           <FormField
-            label="Ano de lançamento"
+            label="Release Year"
             id=""
             name="year"
             type="number"
@@ -116,7 +113,7 @@ function BookCreate() {
           />
 
           <FormField
-            label="Gênero"
+            label="Genre"
             id="genre"
             name="genre"
             onChange={handleChange}

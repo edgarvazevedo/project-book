@@ -2,14 +2,16 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ConfirmationModal from "../../components/ConfirmationModal";
 
-
 function BookCard(props) {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   return (
     <div className="list-group-item ">
-        
+      
+      <h1>
+        <strong>{props.title}</strong>
+      </h1>
       <div class="img-fluid card" style={{ width: "18rem" }}>
         <img
           src={props.coverImage}
@@ -17,38 +19,36 @@ function BookCard(props) {
           alt={props.title}
         />
         <div class="card-body">
-          <h3>
-            <strong>{props.title}</strong>
-          </h3>
-          <h5>
+          <p>
             <strong>{props.author}</strong>
-          </h5>
+          </p>
 
-          <h4>
+          <p>
             <p>{props.releaseYear}</p>
-          </h4>
-          <h4>
+          </p>
+          <p>
             <p>{props.genre}</p>
-          </h4>
+          </p>
         </div>
-        <div className="container-fluid d-flex justify-content-between">
-          <div className="btn btn-primary">
-            <Link className="link-detail" to={`/bookdetails/${props._id}`}>
-              Detalhe
-            </Link>
+
+        <div>
+          <div className="me-2">
+            <button className="btn btn-primary me-2">
+              <Link to={`/bookdetails/${props._id}`}>Details</Link>
+            </button>
+
+            <button className="btn btn-info me-2">
+              <Link to={`/edit-book/${props._id}`}>Edit</Link>
+            </button>
+
+            <button
+              className="btn btn-danger"
+              onClick={() => setShowModal(true)}
+            >
+              Delete
+            </button>
           </div>
 
-          <button className="btn btn-warning">
-            <Link to={`/edit-book/${props._id}`}>
-              
-            </Link>
-          </button>
-          <button
-            className="btn btn-danger btn-link"
-            onClick={() => setShowModal(true)}
-          >
-            
-          </button>
           <ConfirmationModal
             title="Tem certeza que quer deletar esse livro?"
             variant="danger"

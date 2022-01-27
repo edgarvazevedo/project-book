@@ -9,12 +9,13 @@ import BookCreate from "../pages/book/BookCreate";
 import ProtectedRoute from "../pages/auth/ProtectedRoute";
 import BookDelete from "../pages/book/BookDelete";
 import BookEdit from "../pages/book/BookEdit";
-
+import Navbar from "./Navbar";
 import { AuthContextComponent } from "../contexts/authContext";
 
 function App() {
   return (
     <AuthContextComponent>
+      <Navbar />
       <Routes>
         <Route
           path="/update-book/:id"
