@@ -98,7 +98,7 @@ function BookEdit(props) {
         {/* Título */}
         <div className=" mb-3 ">
           <FormField
-            label="Título"
+            label="Title"
             type="text"
             id="title"
             name="title"
@@ -112,7 +112,7 @@ function BookEdit(props) {
         {/* Author */}
         <div className=" mb-3">
           <FormField
-            label="Autor"
+            label="Authot"
             type="text"
             id="author"
             name="author"
@@ -126,7 +126,7 @@ function BookEdit(props) {
         {/* Sinopse */}
         <div className=" mb-3">
           <FormField
-            label="Sinopse"
+            label="Synopsis"
             type="text"
             id="synopsis"
             name="synopsis"

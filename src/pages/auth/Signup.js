@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
-import Navbar from "../../components/Navbar";
+
 
 function Signup(props) {
   const [state, setState] = useState({ name: "", password: "", email: "" });
@@ -40,7 +40,7 @@ function Signup(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Navbar />
+      
       <div className="container">
         <h1 className="pb-3">Signup!</h1>
 
