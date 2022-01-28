@@ -9,7 +9,7 @@ function BookCreate() {
     title: "",
     author: "",
     synopsis: "",
-    releaseYear: 0,
+    releaseYear: "",
     genre: "",
     picture: new File([], ""),
     coverImage: "",

@@ -175,7 +175,7 @@ function BookEdit(props) {
         </div>
 
         <div>
-          <button disabled={loading} type="submit" className="btn-primary mb-3">
+          <button disabled={loading} type="submit" className="btn btn-primary mb-3">
             {loading ? (
               <>
                 <span
