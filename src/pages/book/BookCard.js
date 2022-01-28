@@ -8,7 +8,6 @@ function BookCard(props) {
 
   return (
     <div className="list-group-item ">
-      
       <h1>
         <strong>{props.title}</strong>
       </h1>
@@ -22,7 +21,9 @@ function BookCard(props) {
           <p>
             <strong>{props.author}</strong>
           </p>
-
+          <p>
+            <strong>{props.synopsis}</strong>
+          </p>
           <p>
             <p>{props.releaseYear}</p>
           </p>
@@ -32,13 +33,13 @@ function BookCard(props) {
         </div>
 
         <div>
-          <div className="me-2">
+          <div className="ms-4 pb-2">
             <button className="btn btn-primary me-2">
               <Link to={`/bookdetails/${props._id}`}>Details</Link>
             </button>
 
             <button className="btn btn-info me-2">
-              <Link to={`/edit-book/${props._id}`}>Edit</Link>
+              <Link to={`/update-book/${props._id}`}>Edit</Link>
             </button>
 
             <button

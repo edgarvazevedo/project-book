@@ -26,7 +26,7 @@ function BookEdit(props) {
     async function user() {
       try {
         const response = await api.get(`/detail-book/${id}`);
-        const coverImage = await handleFileUpload(userData.coverImage);
+        const coverImage = await handleFileUpload(userData.picture);
 
         setUserData({ ...userData, coverImage, ...response.data });
       } catch (e) {
@@ -52,7 +52,7 @@ function BookEdit(props) {
       const uploadData = new FormData();
       uploadData.append("picture", file);
 
-      const response = await api.post("/update-book", uploadData);
+      const response = await api.post("/upload", uploadData);
       console.log(response);
 
       return response.data.url;
@@ -69,7 +69,7 @@ function BookEdit(props) {
 
       const coverImage = await handleFileUpload(userData.picture);
       const response = await api.patch(
-        `/upload/${id}`,
+        `/update-book/${id}`,
         userData,
         coverImage
       );
@@ -88,14 +88,14 @@ function BookEdit(props) {
   }
 
   return (
-    <div className="container cadastro">
+    <div className="container">
         
       <form onSubmit={handleSubmit}>
         <div className="titulo">
-          <h1>Novo Livro</h1>
+          <h1>New Book</h1>
         </div>
 
-        {/* Título */}
+        
         <div className=" mb-3 ">
           <FormField
             label="Title"
@@ -109,7 +109,7 @@ function BookEdit(props) {
           />
         </div>
 
-        {/* Author */}
+        
         <div className=" mb-3">
           <FormField
             label="Authot"
@@ -123,7 +123,7 @@ function BookEdit(props) {
           />
         </div>
 
-        {/* Sinopse */}
+        
         <div className=" mb-3">
           <FormField
             label="Synopsis"
@@ -137,7 +137,7 @@ function BookEdit(props) {
           />
         </div>
 
-        {/* Ano */}
+        
         <div className="mb-3">
           <FormField
             label="Ano"
@@ -150,7 +150,7 @@ function BookEdit(props) {
           />
         </div>
 
-        {/* Gênero */}
+       
         <div className=" mb-3">
           <FormField
             label="Gênero"
@@ -166,7 +166,7 @@ function BookEdit(props) {
         <div class=" mb-3">
           <FormField
             type="file"
-            label="Imagem"
+            label="Image"
             id="productFormPicture"
             name="picture"
             onChange={handleChange}
