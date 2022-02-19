@@ -104,7 +104,7 @@ function BookCreate() {
           <FormField
             label="Release Year"
             id=""
-            name="year"
+            name="releaseYear"
             type="number"
             onChange={handleChange}
             value={bookData.releaseYear}
