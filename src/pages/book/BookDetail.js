@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import "./BookDetails.css";
 import api from "../../apis/api";
-
 import ConfirmationModal from "../../components/ConfirmationModal";
 
 function BookDetail() {
@@ -34,8 +33,6 @@ function BookDetail() {
 
   return (
     <div className="container">
-      <div className=" d-flex justify-content-between"></div>
-
       <div>
         <div className="description-details">
           <h1>
@@ -89,6 +86,28 @@ function BookDetail() {
         >
           Esta ação é irreversível!
         </ConfirmationModal>
+      </div>
+
+      <div className="mb-3">
+        <label for="exampleFormControlInput1" className="form-label">
+          Want this book?
+        </label>
+        <input
+          type="email"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="name@example.com"
+        ></input>
+      </div>
+      <div className="mb-3">
+        <label for="exampleFormControlTextarea1" className="form-label">
+        Write something here.
+        </label>
+        <textarea
+          className="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+        ></textarea>
       </div>
     </div>
   );
